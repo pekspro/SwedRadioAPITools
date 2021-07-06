@@ -1,0 +1,29 @@
+//{
+//  "compilerOptions": {
+//    "noImplicitAny": false,
+//    "noEmitOnError": true,
+//    "removeComments": false,
+//    "sourceMap": true,
+//    "target": "ES2015"
+//  },
+//  "exclude": [
+//    "node_modules",
+//    "wwwroot"
+//  ]
+//}
+
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2016",
+    "sourceMap": true
+  },
+  "include": [
+    "./wwwroot/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": true
+}
+

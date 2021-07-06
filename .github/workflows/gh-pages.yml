@@ -1,0 +1,25 @@
+name: Deploy Swagger UI
+
+# Only trigger, when the build workflow succeeded
+on:
+  workflow_run:
+    workflows: [".NET Test"]
+    types:
+      - completed
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Copy specification
+      run: cp ./Source/OpenApi/sverigesradio.yaml ./Source/SwaggerUI/sverigesradio.yaml
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@4.1.4
+      with:
+        branch: gh-pages
+        folder: Source/SwaggerUI

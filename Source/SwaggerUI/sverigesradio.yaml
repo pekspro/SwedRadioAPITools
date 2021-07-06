@@ -1,0 +1,12 @@
+openapi: '3.0.2'
+info:
+  title: Sverige Radio API Dummy Specification!
+  version: '1.0'
+servers:
+  - url: https://api.sr.se/api/v2
+paths:
+  /helloworld:
+    get:
+      responses:
+        '200':
+          description: OK
