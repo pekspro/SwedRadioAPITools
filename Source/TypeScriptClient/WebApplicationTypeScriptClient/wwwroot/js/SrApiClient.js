@@ -1795,7 +1795,12 @@ class Program {
         if (_data) {
             this.id = _data["id"];
             this.name = _data["name"];
+            this.description = _data["description"];
             this.programcategory = _data["programcategory"] ? ProgramCategory.fromJS(_data["programcategory"]) : undefined;
+            this.payoff = _data["payoff"];
+            this.email = _data["email"];
+            this.phone = _data["phone"];
+            this.broadcastinfo = _data["broadcastinfo"];
             this.channel = _data["channel"] ? ChannelOverview.fromJS(_data["channel"]) : undefined;
             if (Array.isArray(_data["socialmediaplatforms"])) {
                 this.socialmediaplatforms = [];
@@ -1826,7 +1831,12 @@ class Program {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["name"] = this.name;
+        data["description"] = this.description;
         data["programcategory"] = this.programcategory ? this.programcategory.toJSON() : undefined;
+        data["payoff"] = this.payoff;
+        data["email"] = this.email;
+        data["phone"] = this.phone;
+        data["broadcastinfo"] = this.broadcastinfo;
         data["channel"] = this.channel ? this.channel.toJSON() : undefined;
         if (Array.isArray(this.socialmediaplatforms)) {
             data["socialmediaplatforms"] = [];

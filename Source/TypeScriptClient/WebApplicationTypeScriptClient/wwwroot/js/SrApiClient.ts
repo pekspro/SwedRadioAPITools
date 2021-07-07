@@ -1913,7 +1913,12 @@ interface IProgramCategoryResponse extends IBaseResponse {
 class Program implements IProgram {
     id!: number;
     name!: string;
+    description?: string;
     programcategory?: ProgramCategory;
+    payoff?: string;
+    email?: string;
+    phone?: string;
+    broadcastinfo?: string;
     channel?: ChannelOverview;
     socialmediaplatforms?: SocialMediaPlatform[];
     programurl?: string;
@@ -1942,7 +1947,12 @@ class Program implements IProgram {
         if (_data) {
             this.id = _data["id"];
             this.name = _data["name"];
+            this.description = _data["description"];
             this.programcategory = _data["programcategory"] ? ProgramCategory.fromJS(_data["programcategory"]) : <any>undefined;
+            this.payoff = _data["payoff"];
+            this.email = _data["email"];
+            this.phone = _data["phone"];
+            this.broadcastinfo = _data["broadcastinfo"];
             this.channel = _data["channel"] ? ChannelOverview.fromJS(_data["channel"]) : <any>undefined;
             if (Array.isArray(_data["socialmediaplatforms"])) {
                 this.socialmediaplatforms = [] as any;
@@ -1975,7 +1985,12 @@ class Program implements IProgram {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["name"] = this.name;
+        data["description"] = this.description;
         data["programcategory"] = this.programcategory ? this.programcategory.toJSON() : <any>undefined;
+        data["payoff"] = this.payoff;
+        data["email"] = this.email;
+        data["phone"] = this.phone;
+        data["broadcastinfo"] = this.broadcastinfo;
         data["channel"] = this.channel ? this.channel.toJSON() : <any>undefined;
         if (Array.isArray(this.socialmediaplatforms)) {
             data["socialmediaplatforms"] = [];
@@ -2001,7 +2016,12 @@ class Program implements IProgram {
 interface IProgram {
     id: number;
     name: string;
+    description?: string;
     programcategory?: ProgramCategory;
+    payoff?: string;
+    email?: string;
+    phone?: string;
+    broadcastinfo?: string;
     channel?: ChannelOverview;
     socialmediaplatforms?: SocialMediaPlatform[];
     programurl?: string;

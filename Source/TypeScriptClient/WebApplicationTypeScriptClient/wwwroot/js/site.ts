@@ -121,10 +121,15 @@ client.getPrograms(
         console.log("id: " + program.id);
         console.log("name: " + program.name);
         console.log("archived: " + program.archived);
+        console.log("broadcastinfo: " + program.broadcastinfo);
         console.log("channel.id: " + program.channel?.id);
         console.log("channel.name: " + program.channel?.name);
+        console.log("description: " + program.description);
+        console.log("email: " + program.email);
         console.log("hasondemand: " + program.hasondemand);
         console.log("haspod: " + program.haspod);
+        console.log("payoff: " + program.payoff);
+        console.log("phone: " + program.phone);
         console.log("programcategory.id: " + program.programcategory?.id);
         console.log("programcategory.name: " + program.programcategory?.name);
         console.log("programimage: " + program.programimage);

@@ -73,10 +73,15 @@ client.getPrograms(Format.Json, undefined, undefined, undefined, undefined).then
         console.log("id: " + program.id);
         console.log("name: " + program.name);
         console.log("archived: " + program.archived);
+        console.log("broadcastinfo: " + program.broadcastinfo);
         console.log("channel.id: " + ((_a = program.channel) === null || _a === void 0 ? void 0 : _a.id));
         console.log("channel.name: " + ((_b = program.channel) === null || _b === void 0 ? void 0 : _b.name));
+        console.log("description: " + program.description);
+        console.log("email: " + program.email);
         console.log("hasondemand: " + program.hasondemand);
         console.log("haspod: " + program.haspod);
+        console.log("payoff: " + program.payoff);
+        console.log("phone: " + program.phone);
         console.log("programcategory.id: " + ((_c = program.programcategory) === null || _c === void 0 ? void 0 : _c.id));
         console.log("programcategory.name: " + ((_d = program.programcategory) === null || _d === void 0 ? void 0 : _d.name));
         console.log("programimage: " + program.programimage);

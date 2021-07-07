@@ -23,16 +23,19 @@ namespace Pekspro.SrApi.Test
 
             var program = programsResponse.Programs.First();
 
-            Assert.NotEmpty(program.Channel.Name);
-            Assert.NotEmpty(program.Programimage);
-            Assert.NotEmpty(program.Programimagetemplate);
-            Assert.NotEmpty(program.Programimagetemplatewide);
-            Assert.NotEmpty(program.Programimagewide);
-            Assert.NotEmpty(program.Programslug);
-            Assert.NotEmpty(program.Programurl);
-            Assert.NotEmpty(program.Responsibleeditor);
-            Assert.NotEmpty(program.Socialimage);
-            Assert.NotEmpty(program.Socialimagetemplate);
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Channel.Name));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Broadcastinfo));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Description));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Email));
+            //Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Payoff));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Programimage));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Programimagetemplate));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Programimagetemplatewide));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Programslug));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Programurl));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Responsibleeditor));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Socialimage));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Socialimagetemplate));
             Assert.Contains(programsResponse.Programs, a => a.Socialmediaplatforms.Any());
         }
 
