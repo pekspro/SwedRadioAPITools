@@ -2263,7 +2263,7 @@ interface IBroadcastFile {
 }
 
 class Broadcast implements IBroadcast {
-    availablestoputc!: Date;
+    availablestoputc?: Date;
     playlist?: Playlist;
     broadcastfiles?: BroadcastFile[];
 
@@ -2309,7 +2309,7 @@ class Broadcast implements IBroadcast {
 }
 
 interface IBroadcast {
-    availablestoputc: Date;
+    availablestoputc?: Date;
     playlist?: Playlist;
     broadcastfiles?: BroadcastFile[];
 }
