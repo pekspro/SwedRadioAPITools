@@ -1555,7 +1555,7 @@ components:
     ScheduledEpisode:
       type: object
       required:
-        - episodeid
+        # - episodeid This may be ommited.
         - title
         - starttimeutc
         - endtimeutc

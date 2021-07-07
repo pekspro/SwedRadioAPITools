@@ -3260,7 +3260,7 @@ interface IExtraBroadcastsResponse extends IPaginationResponse {
 }
 
 class ScheduledEpisode implements IScheduledEpisode {
-    episodeid!: number;
+    episodeid?: number;
     title!: string;
     description?: string;
     starttimeutc!: Date;
@@ -3316,7 +3316,7 @@ class ScheduledEpisode implements IScheduledEpisode {
 }
 
 interface IScheduledEpisode {
-    episodeid: number;
+    episodeid?: number;
     title: string;
     description?: string;
     starttimeutc: Date;
