@@ -1076,8 +1076,22 @@ components:
         name:
           type: string
           example: Sporten P4 Skaraborg
+        description:
+          type: string
+          example: Sport, P4 Skaraborg, Sveriges Radio.
         programcategory:
           $ref: '#/components/schemas/ProgramCategory'
+        payoff:
+          type: string
+          example: Koppla av med P2 Klassiskt
+        email:
+          type: string
+          example: some@mail.com
+        phone:
+          type: string
+        broadcastinfo:
+          type: string
+          example: Har du nyhetstips? Kontakta oss via e-post some@mail.com eller 012-34 56 78
         channel:
           $ref: '#/components/schemas/ChannelOverview'
         socialmediaplatforms:
