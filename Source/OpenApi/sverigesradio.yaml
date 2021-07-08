@@ -1172,7 +1172,6 @@ components:
         - id
         - url
         - duration
-        - publishdateutc
       properties:
         id:
           $ref: '#/components/schemas/Id'
@@ -1187,14 +1186,16 @@ components:
           format: int32
           example: 3420
         publishdateutc:
-          $ref: '#/components/schemas/EntityDateTime'
+          description: In some rare cases this is not definied.
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/EntityDateTime'
     BroadcastFile:
       type: object
       required:
         - id
         - url
         - duration
-        - publishdateutc
       properties:
         id:
           $ref: '#/components/schemas/Id'
@@ -1209,12 +1210,18 @@ components:
           format: int32
           example: 3420
         publishdateutc:
-          $ref: '#/components/schemas/EntityDateTime'
+          description: In some rare cases this is not definied.
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/EntityDateTime'
     Broadcast:
       type: object
       properties:
         availablestoputc:
-          $ref: '#/components/schemas/EntityDateTime'
+          description: In some rare cases this is not definied.
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/EntityDateTime'
         playlist:
           $ref: "#/components/schemas/Playlist"
         broadcastfiles:
@@ -1229,7 +1236,6 @@ components:
         - duration
         - filesizeinbytes
         - publishdateutc
-        - availablefromutc
       properties:
         id:
           $ref: '#/components/schemas/Id'
@@ -1258,7 +1264,10 @@ components:
         program:
           $ref: '#/components/schemas/ProgramOverview'
         availablefromutc:
-          $ref: '#/components/schemas/EntityDateTime'
+          description: In some rare cases this is not definied.
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/EntityDateTime'
     NewsPodFile:
       type: object
       required:
@@ -1553,13 +1562,15 @@ components:
     ScheduledEpisode:
       type: object
       required:
-        # - episodeid This may be ommited.
         - title
         - starttimeutc
         - endtimeutc
       properties:
         episodeid:
-          $ref: '#/components/schemas/Id'
+          description: In some rare cases this is not definied.
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Id'
         title:
           type: string
         description:

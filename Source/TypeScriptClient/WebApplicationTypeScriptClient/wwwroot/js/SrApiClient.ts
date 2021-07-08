@@ -2163,7 +2163,8 @@ class Playlist implements IPlaylist {
     url!: string;
     statkey?: string;
     duration!: number;
-    publishdateutc!: Date;
+    /** In some rare cases this is not definied. */
+    publishdateutc?: Date | undefined;
 
     constructor(data?: IPlaylist) {
         if (data) {
@@ -2207,7 +2208,8 @@ interface IPlaylist {
     url: string;
     statkey?: string;
     duration: number;
-    publishdateutc: Date;
+    /** In some rare cases this is not definied. */
+    publishdateutc?: Date | undefined;
 }
 
 class BroadcastFile implements IBroadcastFile {
@@ -2215,7 +2217,8 @@ class BroadcastFile implements IBroadcastFile {
     url!: string;
     statkey?: string;
     duration!: number;
-    publishdateutc!: Date;
+    /** In some rare cases this is not definied. */
+    publishdateutc?: Date | undefined;
 
     constructor(data?: IBroadcastFile) {
         if (data) {
@@ -2259,11 +2262,13 @@ interface IBroadcastFile {
     url: string;
     statkey?: string;
     duration: number;
-    publishdateutc: Date;
+    /** In some rare cases this is not definied. */
+    publishdateutc?: Date | undefined;
 }
 
 class Broadcast implements IBroadcast {
-    availablestoputc?: Date;
+    /** In some rare cases this is not definied. */
+    availablestoputc?: Date | undefined;
     playlist?: Playlist;
     broadcastfiles?: BroadcastFile[];
 
@@ -2309,7 +2314,8 @@ class Broadcast implements IBroadcast {
 }
 
 interface IBroadcast {
-    availablestoputc?: Date;
+    /** In some rare cases this is not definied. */
+    availablestoputc?: Date | undefined;
     playlist?: Playlist;
     broadcastfiles?: BroadcastFile[];
 }
@@ -2324,7 +2330,8 @@ class PodFile implements IPodFile {
     description?: string;
     filesizeinbytes!: number;
     program?: ProgramOverview;
-    availablefromutc!: Date;
+    /** In some rare cases this is not definied. */
+    availablefromutc?: Date | undefined;
 
     constructor(data?: IPodFile) {
         if (data) {
@@ -2383,7 +2390,8 @@ interface IPodFile {
     description?: string;
     filesizeinbytes: number;
     program?: ProgramOverview;
-    availablefromutc: Date;
+    /** In some rare cases this is not definied. */
+    availablefromutc?: Date | undefined;
 }
 
 class NewsPodFile implements INewsPodFile {
@@ -3260,7 +3268,8 @@ interface IExtraBroadcastsResponse extends IPaginationResponse {
 }
 
 class ScheduledEpisode implements IScheduledEpisode {
-    episodeid?: number;
+    /** In some rare cases this is not definied. */
+    episodeid?: number | undefined;
     title!: string;
     description?: string;
     starttimeutc!: Date;
@@ -3316,7 +3325,8 @@ class ScheduledEpisode implements IScheduledEpisode {
 }
 
 interface IScheduledEpisode {
-    episodeid?: number;
+    /** In some rare cases this is not definied. */
+    episodeid?: number | undefined;
     title: string;
     description?: string;
     starttimeutc: Date;
