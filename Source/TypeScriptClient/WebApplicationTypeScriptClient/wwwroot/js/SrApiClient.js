@@ -501,6 +501,70 @@ class SrApiClient {
         return Promise.resolve(null);
     }
     /**
+     * Search episodes.
+     * @param format Format of response. Has to be json.
+     * @param page (optional) Page number.
+     * @param size (optional) Size of each page. For episode search this cannot be more than 25.
+     * @param query String to be search in episodes. For instance 'mask'
+     * @param audioquality (optional) Only affects broadcast files, not pod files.
+     * @return OK
+     */
+    searchEpisodes(format, page, size, query, audioquality) {
+        let url_ = this.baseUrl + "/episodes/search?";
+        if (format === undefined || format === null)
+            throw new Error("The parameter 'format' must be defined and cannot be null.");
+        else
+            url_ += "format=" + encodeURIComponent("" + format) + "&";
+        if (page === null)
+            throw new Error("The parameter 'page' cannot be null.");
+        else if (page !== undefined)
+            url_ += "page=" + encodeURIComponent("" + page) + "&";
+        if (size === null)
+            throw new Error("The parameter 'size' cannot be null.");
+        else if (size !== undefined)
+            url_ += "size=" + encodeURIComponent("" + size) + "&";
+        if (query === undefined || query === null)
+            throw new Error("The parameter 'query' must be defined and cannot be null.");
+        else
+            url_ += "query=" + encodeURIComponent("" + query) + "&";
+        if (audioquality === null)
+            throw new Error("The parameter 'audioquality' cannot be null.");
+        else if (audioquality !== undefined)
+            url_ += "audioquality=" + encodeURIComponent("" + audioquality) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+        let options_ = {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        };
+        return this.http.fetch(url_, options_).then((_response) => {
+            return this.processSearchEpisodes(_response);
+        });
+    }
+    processSearchEpisodes(response) {
+        const status = response.status;
+        let _headers = {};
+        if (response.headers && response.headers.forEach) {
+            response.headers.forEach((v, k) => _headers[k] = v);
+        }
+        ;
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+                let result200 = null;
+                let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+                result200 = EpisodesResponse.fromJS(resultData200);
+                return result200;
+            });
+        }
+        else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+                return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve(null);
+    }
+    /**
      * Get current playlist for a channel.
      * @param format Format of response. Has to be json.
      * @param channelid Id of channel
