@@ -286,6 +286,46 @@ paths:
                 $ref: '#/components/schemas/EpisodeResponse'
         '404':
           description: Not found
+  /episodes/search:
+    get:
+      summary: Search episodes.
+      description: Returnerar avsnitt som matchar given fråga. https://sverigesradio.se/api/documentation/v2/metoder/avsnitt.html
+      operationId: "searchEpisodes"
+      parameters:
+        - in: query
+          name: format
+          description: Format of response. Has to be json.
+          required: true
+          schema: 
+            $ref: '#/components/schemas/Format'
+        - in: query
+          name: page
+          description: Page number.
+          schema: 
+            $ref: '#/components/schemas/Page'
+        - in: query
+          name: size
+          description: Size of each page. For episode search this cannot be more than 25.
+          schema: 
+            $ref: '#/components/schemas/SizeEpisodeSearch'
+        - in: query
+          name: query
+          required: true
+          description: String to be search in episodes. For instance 'mask'
+          schema: 
+            $ref: '#/components/schemas/SearchQuery'
+        - in: query
+          name: audioquality
+          description: Only affects broadcast files, not pod files.
+          schema: 
+            $ref: '#/components/schemas/AudioQuality'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EpisodesResponse'
   /playlists/rightnow:
     get:
       summary: Get current playlist for a channel.
@@ -845,6 +885,10 @@ components:
     Size:
       type: integer
       format: int32
+    SizeEpisodeSearch:
+      type: integer
+      maximum: 25
+      format: int32
     ProgramCategoryId:
       type: integer
       format: int32
@@ -898,6 +942,8 @@ components:
       type: string
       format: date-time
       # pattern: ^\/Date\(\d*\)\/$
+    SearchQuery:
+      type: string
     Pagination:
       type: object
       required:
@@ -1172,7 +1218,6 @@ components:
         - id
         - url
         - duration
-        - publishdateutc
       properties:
         id:
           $ref: '#/components/schemas/Id'
@@ -1187,14 +1232,16 @@ components:
           format: int32
           example: 3420
         publishdateutc:
-          $ref: '#/components/schemas/EntityDateTime'
+          description: In some rare cases this is not definied.
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/EntityDateTime'
     BroadcastFile:
       type: object
       required:
         - id
         - url
         - duration
-        - publishdateutc
       properties:
         id:
           $ref: '#/components/schemas/Id'
@@ -1209,12 +1256,18 @@ components:
           format: int32
           example: 3420
         publishdateutc:
-          $ref: '#/components/schemas/EntityDateTime'
+          description: In some rare cases this is not definied.
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/EntityDateTime'
     Broadcast:
       type: object
       properties:
         availablestoputc:
-          $ref: '#/components/schemas/EntityDateTime'
+          description: In some rare cases this is not definied.
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/EntityDateTime'
         playlist:
           $ref: "#/components/schemas/Playlist"
         broadcastfiles:
@@ -1229,7 +1282,6 @@ components:
         - duration
         - filesizeinbytes
         - publishdateutc
-        - availablefromutc
       properties:
         id:
           $ref: '#/components/schemas/Id'
@@ -1258,7 +1310,10 @@ components:
         program:
           $ref: '#/components/schemas/ProgramOverview'
         availablefromutc:
-          $ref: '#/components/schemas/EntityDateTime'
+          description: In some rare cases this is not definied.
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/EntityDateTime'
     NewsPodFile:
       type: object
       required:
@@ -1553,13 +1608,15 @@ components:
     ScheduledEpisode:
       type: object
       required:
-        # - episodeid This may be ommited.
         - title
         - starttimeutc
         - endtimeutc
       properties:
         episodeid:
-          $ref: '#/components/schemas/Id'
+          description: In some rare cases this is not definied.
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Id'
         title:
           type: string
         description:
