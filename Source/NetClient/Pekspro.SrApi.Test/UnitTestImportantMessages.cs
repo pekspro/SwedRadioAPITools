@@ -8,7 +8,7 @@ namespace Pekspro.SrApi.Test
     public class UnitTestImportantMessages
     {
         [Fact]
-        public async Task TestGetScheduledEpisodesForChannelAsync()
+        public async Task TestGetImportantMessagesAsync()
         {
             // Arrange
             var client = TestTools.CreateClient();
