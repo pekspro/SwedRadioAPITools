@@ -73,10 +73,15 @@ client.getPrograms(Format.Json, undefined, undefined, undefined, undefined).then
         console.log("id: " + program.id);
         console.log("name: " + program.name);
         console.log("archived: " + program.archived);
+        console.log("broadcastinfo: " + program.broadcastinfo);
         console.log("channel.id: " + ((_a = program.channel) === null || _a === void 0 ? void 0 : _a.id));
         console.log("channel.name: " + ((_b = program.channel) === null || _b === void 0 ? void 0 : _b.name));
+        console.log("description: " + program.description);
+        console.log("email: " + program.email);
         console.log("hasondemand: " + program.hasondemand);
         console.log("haspod: " + program.haspod);
+        console.log("payoff: " + program.payoff);
+        console.log("phone: " + program.phone);
         console.log("programcategory.id: " + ((_c = program.programcategory) === null || _c === void 0 ? void 0 : _c.id));
         console.log("programcategory.name: " + ((_d = program.programcategory) === null || _d === void 0 ? void 0 : _d.name));
         console.log("programimage: " + program.programimage);
@@ -132,6 +137,32 @@ client.getEpisodes(Format.Json, undefined, undefined, testProgramId, undefined, 
         console.log("id: " + program.id);
         console.log("title: " + program.title);
     });
+});
+client.searchEpisodes(Format.Json, undefined, undefined, "sport", undefined).then(response => {
+    var _a, _b, _c, _d, _e, _f, _g;
+    console.log("*** Got " + response.episodes.length + " episodes.");
+    for (let i = 0; i < response.episodes.length; i++) {
+        const program = response.episodes[i];
+        console.log();
+        console.log("id: " + program.id);
+        console.log("title: " + program.title);
+        console.log("audiopreference: " + program.audiopreference);
+        console.log("audiopresentation: " + program.audiopresentation);
+        console.log("audiopriority: " + program.audiopriority);
+        console.log("program.broadcast.availablestoputc: " + ((_a = program.broadcast) === null || _a === void 0 ? void 0 : _a.availablestoputc));
+        console.log("broadcasttime?.starttimeutc: " + ((_b = program.broadcasttime) === null || _b === void 0 ? void 0 : _b.starttimeutc));
+        console.log("broadcasttime?.endtimeutc: " + ((_c = program.broadcasttime) === null || _c === void 0 ? void 0 : _c.endtimeutc));
+        console.log("channelid: " + program.channelid);
+        console.log("description: " + program.description);
+        console.log("imageurl: " + program.imageurl);
+        console.log("imageurltemplate: " + program.imageurltemplate);
+        console.log("program.id: " + ((_d = program.program) === null || _d === void 0 ? void 0 : _d.id));
+        console.log("program.name: " + ((_e = program.program) === null || _e === void 0 ? void 0 : _e.name));
+        console.log("publishdateutc: " + program.publishdateutc);
+        console.log("url: " + program.url);
+        console.log("downloadpodfile.availablefromutc: " + ((_f = program.downloadpodfile) === null || _f === void 0 ? void 0 : _f.availablefromutc));
+        console.log("listenpodfile.availablefromutc: " + ((_g = program.listenpodfile) === null || _g === void 0 ? void 0 : _g.availablefromutc));
+    }
 });
 client.getPlaylistRightNow(Format.Json, testChannelId).then(response => {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6, _7, _8, _9, _10;

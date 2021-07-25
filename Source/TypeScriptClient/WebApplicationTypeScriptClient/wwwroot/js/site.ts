@@ -8,7 +8,6 @@ const testProgramId = 2023;
 const testEpisodeId = 1738930;
 const client = new SrApiClient();
 
- 
 client.getChannels(
     Format.Json,
     undefined,
@@ -121,10 +120,15 @@ client.getPrograms(
         console.log("id: " + program.id);
         console.log("name: " + program.name);
         console.log("archived: " + program.archived);
+        console.log("broadcastinfo: " + program.broadcastinfo);
         console.log("channel.id: " + program.channel?.id);
         console.log("channel.name: " + program.channel?.name);
+        console.log("description: " + program.description);
+        console.log("email: " + program.email);
         console.log("hasondemand: " + program.hasondemand);
         console.log("haspod: " + program.haspod);
+        console.log("payoff: " + program.payoff);
+        console.log("phone: " + program.phone);
         console.log("programcategory.id: " + program.programcategory?.id);
         console.log("programcategory.name: " + program.programcategory?.name);
         console.log("programimage: " + program.programimage);
@@ -211,6 +215,40 @@ client.getEpisodes(
     });
 });
 
+client.searchEpisodes(
+    Format.Json,
+    undefined,
+    undefined,
+    "sport",
+    undefined
+).then(response => {
+
+    console.log("*** Got " + response.episodes.length + " episodes.");
+
+    for (let i = 0; i < response.episodes.length; i++) {
+        const program = response.episodes[i];
+
+        console.log();
+        console.log("id: " + program.id);
+        console.log("title: " + program.title);
+        console.log("audiopreference: " + program.audiopreference);
+        console.log("audiopresentation: " + program.audiopresentation);
+        console.log("audiopriority: " + program.audiopriority);
+        console.log("program.broadcast.availablestoputc: " + program.broadcast?.availablestoputc);
+        console.log("broadcasttime?.starttimeutc: " + program.broadcasttime?.starttimeutc);
+        console.log("broadcasttime?.endtimeutc: " + program.broadcasttime?.endtimeutc);
+        console.log("channelid: " + program.channelid);
+        console.log("description: " + program.description);
+        console.log("imageurl: " + program.imageurl);
+        console.log("imageurltemplate: " + program.imageurltemplate);
+        console.log("program.id: " + program.program?.id);
+        console.log("program.name: " + program.program?.name);
+        console.log("publishdateutc: " + program.publishdateutc);
+        console.log("url: " + program.url);
+        console.log("downloadpodfile.availablefromutc: " + program.downloadpodfile?.availablefromutc);
+        console.log("listenpodfile.availablefromutc: " + program.listenpodfile?.availablefromutc);
+    }
+});
 
 client.getPlaylistRightNow(
     Format.Json,

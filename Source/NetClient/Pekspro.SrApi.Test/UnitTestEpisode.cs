@@ -121,5 +121,50 @@ namespace Pekspro.SrApi.Test
             Assert.NotNull(episodeResponse.Episode);
             Assert.Equal(TestEpisodeId, episodeResponse.Episode.Id);
         }
+
+        [Fact]
+        public async Task TestSearchEpisodesAsync()
+        {
+            // Arrange
+            var client = TestTools.CreateClient();
+
+            // Act
+            var episodesResponse = await client.SearchEpisodesAsync(Format.Json, null, null, "sport", AudioQuality.Hi);
+
+            // Assert
+            Assert.NotNull(episodesResponse.Copyright);
+            Assert.NotNull(episodesResponse.Pagination);
+            Assert.Equal(1, episodesResponse.Pagination.Page);
+            Assert.NotEmpty(episodesResponse.Episodes);
+
+            var episode = episodesResponse.Episodes.First();
+
+            Assert.NotEmpty(episode.Program.Name);
+
+            Assert.NotEmpty(episode.Audiopreference);
+            Assert.NotEmpty(episode.Audiopresentation);
+            Assert.NotEmpty(episode.Audiopriority);
+            Assert.NotEmpty(episode.Description);
+            Assert.NotEmpty(episode.Imageurl);
+            Assert.NotEmpty(episode.Imageurltemplate);
+            Assert.NotEmpty(episode.Title);
+        }
+
+        [Fact]
+        public async Task TestSearchEpisodesPaginationAsync()
+        {
+            // Arrange
+            var client = TestTools.CreateClient();
+
+            // Act
+            var episodesResponse1 = await client.SearchEpisodesAsync(Format.Json, 1, 3, "sport", null);
+            var episodesResponse2 = await client.SearchEpisodesAsync(Format.Json, 2, 3, "sport", null);
+
+            // Assert
+            Assert.Equal(1, episodesResponse1.Pagination.Page);
+            Assert.Equal(3, episodesResponse1.Pagination.Size);
+            Assert.Equal(2, episodesResponse2.Pagination.Page);
+            Assert.Equal(3, episodesResponse2.Pagination.Size);
+        }
     }
 }

@@ -493,6 +493,69 @@ class SrApiClient {
     }
 
     /**
+     * Search episodes.
+     * @param format Format of response. Has to be json.
+     * @param page (optional) Page number.
+     * @param size (optional) Size of each page. For episode search this cannot be more than 25.
+     * @param query String to be search in episodes. For instance 'mask'
+     * @param audioquality (optional) Only affects broadcast files, not pod files.
+     * @return OK
+     */
+    searchEpisodes(format: Format, page: number | undefined, size: number | undefined, query: string, audioquality: AudioQuality | undefined): Promise<EpisodesResponse> {
+        let url_ = this.baseUrl + "/episodes/search?";
+        if (format === undefined || format === null)
+            throw new Error("The parameter 'format' must be defined and cannot be null.");
+        else
+            url_ += "format=" + encodeURIComponent("" + format) + "&";
+        if (page === null)
+            throw new Error("The parameter 'page' cannot be null.");
+        else if (page !== undefined)
+            url_ += "page=" + encodeURIComponent("" + page) + "&";
+        if (size === null)
+            throw new Error("The parameter 'size' cannot be null.");
+        else if (size !== undefined)
+            url_ += "size=" + encodeURIComponent("" + size) + "&";
+        if (query === undefined || query === null)
+            throw new Error("The parameter 'query' must be defined and cannot be null.");
+        else
+            url_ += "query=" + encodeURIComponent("" + query) + "&";
+        if (audioquality === null)
+            throw new Error("The parameter 'audioquality' cannot be null.");
+        else if (audioquality !== undefined)
+            url_ += "audioquality=" + encodeURIComponent("" + audioquality) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ = <RequestInit>{
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        };
+
+        return this.http.fetch(url_, options_).then((_response: Response) => {
+            return this.processSearchEpisodes(_response);
+        });
+    }
+
+    protected processSearchEpisodes(response: Response): Promise<EpisodesResponse> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = EpisodesResponse.fromJS(resultData200);
+            return result200;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<EpisodesResponse>(<any>null);
+    }
+
+    /**
      * Get current playlist for a channel.
      * @param format Format of response. Has to be json.
      * @param channelid Id of channel
@@ -1913,7 +1976,12 @@ interface IProgramCategoryResponse extends IBaseResponse {
 class Program implements IProgram {
     id!: number;
     name!: string;
+    description?: string;
     programcategory?: ProgramCategory;
+    payoff?: string;
+    email?: string;
+    phone?: string;
+    broadcastinfo?: string;
     channel?: ChannelOverview;
     socialmediaplatforms?: SocialMediaPlatform[];
     programurl?: string;
@@ -1942,7 +2010,12 @@ class Program implements IProgram {
         if (_data) {
             this.id = _data["id"];
             this.name = _data["name"];
+            this.description = _data["description"];
             this.programcategory = _data["programcategory"] ? ProgramCategory.fromJS(_data["programcategory"]) : <any>undefined;
+            this.payoff = _data["payoff"];
+            this.email = _data["email"];
+            this.phone = _data["phone"];
+            this.broadcastinfo = _data["broadcastinfo"];
             this.channel = _data["channel"] ? ChannelOverview.fromJS(_data["channel"]) : <any>undefined;
             if (Array.isArray(_data["socialmediaplatforms"])) {
                 this.socialmediaplatforms = [] as any;
@@ -1975,7 +2048,12 @@ class Program implements IProgram {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["name"] = this.name;
+        data["description"] = this.description;
         data["programcategory"] = this.programcategory ? this.programcategory.toJSON() : <any>undefined;
+        data["payoff"] = this.payoff;
+        data["email"] = this.email;
+        data["phone"] = this.phone;
+        data["broadcastinfo"] = this.broadcastinfo;
         data["channel"] = this.channel ? this.channel.toJSON() : <any>undefined;
         if (Array.isArray(this.socialmediaplatforms)) {
             data["socialmediaplatforms"] = [];
@@ -2001,7 +2079,12 @@ class Program implements IProgram {
 interface IProgram {
     id: number;
     name: string;
+    description?: string;
     programcategory?: ProgramCategory;
+    payoff?: string;
+    email?: string;
+    phone?: string;
+    broadcastinfo?: string;
     channel?: ChannelOverview;
     socialmediaplatforms?: SocialMediaPlatform[];
     programurl?: string;
@@ -2143,7 +2226,8 @@ class Playlist implements IPlaylist {
     url!: string;
     statkey?: string;
     duration!: number;
-    publishdateutc!: Date;
+    /** In some rare cases this is not definied. */
+    publishdateutc?: Date | undefined;
 
     constructor(data?: IPlaylist) {
         if (data) {
@@ -2187,7 +2271,8 @@ interface IPlaylist {
     url: string;
     statkey?: string;
     duration: number;
-    publishdateutc: Date;
+    /** In some rare cases this is not definied. */
+    publishdateutc?: Date | undefined;
 }
 
 class BroadcastFile implements IBroadcastFile {
@@ -2195,7 +2280,8 @@ class BroadcastFile implements IBroadcastFile {
     url!: string;
     statkey?: string;
     duration!: number;
-    publishdateutc!: Date;
+    /** In some rare cases this is not definied. */
+    publishdateutc?: Date | undefined;
 
     constructor(data?: IBroadcastFile) {
         if (data) {
@@ -2239,11 +2325,13 @@ interface IBroadcastFile {
     url: string;
     statkey?: string;
     duration: number;
-    publishdateutc: Date;
+    /** In some rare cases this is not definied. */
+    publishdateutc?: Date | undefined;
 }
 
 class Broadcast implements IBroadcast {
-    availablestoputc!: Date;
+    /** In some rare cases this is not definied. */
+    availablestoputc?: Date | undefined;
     playlist?: Playlist;
     broadcastfiles?: BroadcastFile[];
 
@@ -2289,7 +2377,8 @@ class Broadcast implements IBroadcast {
 }
 
 interface IBroadcast {
-    availablestoputc: Date;
+    /** In some rare cases this is not definied. */
+    availablestoputc?: Date | undefined;
     playlist?: Playlist;
     broadcastfiles?: BroadcastFile[];
 }
@@ -2304,7 +2393,8 @@ class PodFile implements IPodFile {
     description?: string;
     filesizeinbytes!: number;
     program?: ProgramOverview;
-    availablefromutc!: Date;
+    /** In some rare cases this is not definied. */
+    availablefromutc?: Date | undefined;
 
     constructor(data?: IPodFile) {
         if (data) {
@@ -2363,7 +2453,8 @@ interface IPodFile {
     description?: string;
     filesizeinbytes: number;
     program?: ProgramOverview;
-    availablefromutc: Date;
+    /** In some rare cases this is not definied. */
+    availablefromutc?: Date | undefined;
 }
 
 class NewsPodFile implements INewsPodFile {
@@ -3240,7 +3331,8 @@ interface IExtraBroadcastsResponse extends IPaginationResponse {
 }
 
 class ScheduledEpisode implements IScheduledEpisode {
-    episodeid!: number;
+    /** In some rare cases this is not definied. */
+    episodeid?: number | undefined;
     title!: string;
     description?: string;
     starttimeutc!: Date;
@@ -3296,7 +3388,8 @@ class ScheduledEpisode implements IScheduledEpisode {
 }
 
 interface IScheduledEpisode {
-    episodeid: number;
+    /** In some rare cases this is not definied. */
+    episodeid?: number | undefined;
     title: string;
     description?: string;
     starttimeutc: Date;
