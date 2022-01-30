@@ -1,4 +1,4 @@
-openapi: '3.1.0'
+openapi: '3.0.2'
 info:
   title: Sverige Radio API unofficial specification
   description: This is an unofficial and unsupported OpenAPI specification of Sveriges Radio API. The official specification is available at https://sverigesradio.se/api/documentation/v2/index.html.
