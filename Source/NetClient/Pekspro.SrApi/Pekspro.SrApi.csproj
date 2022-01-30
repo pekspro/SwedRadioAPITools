@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <OpenApiReference Include="..\..\OpenApi\sverigesradio.yaml" CodeGenerator="NSwagCSharp" Namespace="Pekspro.SrApi" ClassName="SrApiClient" Link="OpenAPIs\sverigesradio.yaml" Options="/GenerateNullableReferenceTypes:true" />
+    <!--<OpenApiReference Include="..\..\OpenApi\sverigesradio.yaml" CodeGenerator="NSwagCSharp" Namespace="Pekspro.SrApi" ClassName="SrApiClient" Link="OpenAPIs\sverigesradio.yaml" Options="/GenerateNullableReferenceTypes:true /JsonLibrary:SystemTextJson /JsonConverters:MyDateConverter,MyDateTimeOffsetConverter" />-->
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Text.Json" Version="6.0.1" />
   </ItemGroup>
 
 </Project>

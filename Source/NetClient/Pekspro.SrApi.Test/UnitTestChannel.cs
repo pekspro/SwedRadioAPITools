@@ -27,7 +27,7 @@ namespace Pekspro.SrApi.Test
             Assert.NotEmpty(channel.Color);
             Assert.NotEmpty(channel.Image);
             Assert.NotEmpty(channel.Imagetemplate);
-            Assert.NotEmpty(channel.Liveaudio.Url);
+            Assert.NotEmpty(channel.Liveaudio!.Url);
             Assert.NotEmpty(channel.Name);
             Assert.NotEmpty(channel.Scheduleurl);
             Assert.NotEmpty(channel.Siteurl);
@@ -103,7 +103,7 @@ namespace Pekspro.SrApi.Test
             // Assert
             var channel = channelsResponse.Channels.First();
 
-            Assert.EndsWith(expectedExtension, channel.Liveaudio.Url);
+            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url);
         }
 
         [Theory]
@@ -121,7 +121,7 @@ namespace Pekspro.SrApi.Test
             // Assert
             var channel = channelsResponse.Channels.First();
 
-            Assert.EndsWith(expectedExtension, channel.Liveaudio.Url);
+            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url);
         }
 
         private const int TestChannelId = 132;
@@ -156,7 +156,7 @@ namespace Pekspro.SrApi.Test
             // Assert
             var channel = channelResponse.Channel;
 
-            Assert.EndsWith(expectedExtension, channel.Liveaudio.Url);
+            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url);
         }
 
         [Theory]
@@ -174,7 +174,7 @@ namespace Pekspro.SrApi.Test
             // Assert
             var channel = channelsResponse.Channel;
 
-            Assert.EndsWith(expectedExtension, channel.Liveaudio.Url);
+            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url);
         }
 
     }

@@ -43,9 +43,9 @@ namespace Pekspro.SrApi.Test
 
             // Assert
             Assert.Equal(1, extraBroadcastResponse1.Pagination.Page);
-            Assert.Equal(3, extraBroadcastResponse1.Pagination.Size);
+            Assert.InRange(extraBroadcastResponse1.Pagination.Size, 2, 3);
             Assert.Equal(2, extraBroadcastResponse2.Pagination.Page);
-            Assert.Equal(3, extraBroadcastResponse2.Pagination.Size);
+            Assert.InRange(extraBroadcastResponse2.Pagination.Size, 2, 3);
         }
     }
 }

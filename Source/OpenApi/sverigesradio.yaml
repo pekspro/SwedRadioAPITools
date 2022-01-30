@@ -1,4 +1,4 @@
-openapi: '3.0.2'
+openapi: '3.1.0'
 info:
   title: Sverige Radio API unofficial specification
   description: This is an unofficial and unsupported OpenAPI specification of Sveriges Radio API. The official specification is available at https://sverigesradio.se/api/documentation/v2/index.html.
@@ -1026,28 +1026,36 @@ components:
           example: P1
         image:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/132/2186745_512_512.jpg?preset=api-default-square
         imagetemplate:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/132/2186745_512_512.jpg
         color:
           type: string
+          nullable: true
           example: 31a1bd
         tagline:
           type: string
+          nullable: true
           example: Talat innehåll om samhälle, kultur och vetenskap. Kanalen erbjuder nyheter och aktualiteter, granskning och fördjupning men också livsåskådnings-och livsstilsprogram samt underhållning och upplevelser till exempel i form av teater.
         siteurl:
           type: string
+          nullable: true
           example: https://sverigesradio.se/p1
         liveaudio:
             $ref: '#/components/schemas/LiveAudio'
+            nullable: true
         scheduleurl:
           type: string
+          nullable: true
           example: http://api.sr.se/v2/scheduledepisodes?channelid=132
         channeltype:
             $ref: '#/components/schemas/ChannelType'
         xmltvid:
           type: string
+          nullable: true
           example: p1.sr.se
     ChannelOverview:
       type: object
@@ -1124,49 +1132,64 @@ components:
           example: Sporten P4 Skaraborg
         description:
           type: string
+          nullable: true
           example: Sport, P4 Skaraborg, Sveriges Radio.
         programcategory:
           $ref: '#/components/schemas/ProgramCategory'
+          nullable: true
         payoff:
           type: string
+          nullable: true
           example: Koppla av med P2 Klassiskt
         email:
           type: string
+          nullable: true
           example: some@mail.com
         phone:
           type: string
+          nullable: true
         broadcastinfo:
           type: string
+          nullable: true
           example: Har du nyhetstips? Kontakta oss via e-post some@mail.com eller 012-34 56 78
         channel:
           $ref: '#/components/schemas/ChannelOverview'
+          nullable: true
         socialmediaplatforms:
           type: array
           items:
             $ref: '#/components/schemas/SocialMediaPlatform'
         programurl:
           type: string
+          nullable: true
           example: https://sverigesradio.se/gruppsida.aspx?programid=97&grupp=3840
         programslug:
           type: string
+          nullable: true
           example: sportenp4skaraborg
         programimage:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/content/sverigesradiologga.jpg?preset=api-default-square
         programimagetemplate:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/content/sverigesradiologga.jpg
         programimagewide:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/35/3116563_176_132.jpg?preset=api-default-rectangle
         programimagetemplatewide:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/35/3116563_176_132.jpg
         socialimage:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/content/sverigesradiologga.jpg?preset=api-default-square
         socialimagetemplate:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/content/sverigesradiologga.jpg
         archived:
           type: boolean
@@ -1179,6 +1202,7 @@ components:
           example: true
         responsibleeditor:
           type: string
+          nullable: true
           example: Nisse Hult
       type: object
     ProgramsResponse:
@@ -1270,6 +1294,7 @@ components:
           - $ref: '#/components/schemas/EntityDateTime'
         playlist:
           $ref: "#/components/schemas/Playlist"
+          nullable: true
         broadcastfiles:
           type: array
           items:
@@ -1290,6 +1315,7 @@ components:
           example: http://sverigesradio.se/topsy/ljudfil/srapi/4119397.mp3
         statkey:
           type: string
+          nullable: true
           example: /app/avsnitt/p3[k(164)]/tankesmedjan[p(3718)]/tankesmedjan 2012-08-30 16:10[e(365)]
         duration:
           type: integer
@@ -1299,9 +1325,11 @@ components:
           $ref: '#/components/schemas/EntityDateTime'
         title:
           type: string
+          nullable: true
           example: Patriarkatpysslet, järnvägarna och recensionerna
         description:
           type: string
+          nullable: true
           example: Some description
         filesizeinbytes:
           type: integer
@@ -1309,6 +1337,7 @@ components:
           example: 25270614
         program:
           $ref: '#/components/schemas/ProgramOverview'
+          nullable: true
         availablefromutc:
           description: In some rare cases this is not definied.
           nullable: true
@@ -1370,39 +1399,51 @@ components:
           example: Tankesmedjan
         description:
           type: string
+          nullable: true
           example: Dagens program handlar om järnvägssatsningen.
         url:
           type: string
+          nullable: true
           example: https://sverigesradio.se/avsnitt/365
         channelid:
           $ref: '#/components/schemas/Id'
         program:
           $ref: '#/components/schemas/ProgramOverview'
+          nullable: true
         audiopreference:
           type: string
+          nullable: true
           example: broadcast
         audiopriority:
           type: string
+          nullable: true
           example: mp3
         audiopresentation:
           type: string
+          nullable: true
           example: music
         publishdateutc:
           $ref: '#/components/schemas/EntityDateTime'
         imageurl:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/3718/a35fcdd0-69db-43ef-a395-e1e10be83188.jpg?preset=api-default-square
         imageurltemplate:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/3718/a35fcdd0-69db-43ef-a395-e1e10be83188.jpg
         broadcast:
           $ref: '#/components/schemas/Broadcast'
+          nullable: true
         broadcasttime:
           $ref: '#/components/schemas/BroadcastTime'
+          nullable: true
         listenpodfile:
           $ref: '#/components/schemas/PodFile'
+          nullable: true
         downloadpodfile:
           $ref: '#/components/schemas/PodFile'
+          nullable: true
     EpisodesResponse:
      allOf:
         - $ref: '#/components/schemas/PaginationResponse'
@@ -1479,26 +1520,35 @@ components:
       properties:
         title:
           type: string
+          nullable: true
           example: Black Heart
         description:
           type: string
+          nullable: true
           example: Stooshe - Black Heart
         artist:
           type: string
+          nullable: true
           example: Stooshe
         composer:
           type: string
+          nullable: true
           example: A composer
         conductor:
           type: string
+          nullable: true
         albumname:
           type: string
+          nullable: true
         recordlabel:
           type: string
+          nullable: true
         lyricist:
           type: string
+          nullable: true
         producer:
           type: string
+          nullable: true
         starttimeutc:
           $ref: '#/components/schemas/EntityDateTime'
         stoptimeutc:
@@ -1621,19 +1671,24 @@ components:
           type: string
         description:
           type: string
+          nullable: true
         starttimeutc:
           $ref: '#/components/schemas/EntityDateTime'
         endtimeutc:
           $ref: '#/components/schemas/EntityDateTime'
         program:
           $ref: '#/components/schemas/ProgramOverview'
+          nullable: true
         channel:
           $ref: '#/components/schemas/ChannelOverview'
+          nullable: true
         imageurl:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/3718/a35fcdd0-69db-43ef-a395-e1e10be83188.jpg?preset=api-default-square
         imageurltemplate:
           type: string
+          nullable: true
           example: https://static-cdn.sr.se/images/3718/a35fcdd0-69db-43ef-a395-e1e10be83188.jpg
     ScheduledEpisodeResponse:
       allOf:
@@ -1681,10 +1736,13 @@ components:
           type: string
         previousscheduledepisode:
           $ref: '#/components/schemas/ChannelRightNowScheduledEpisode'
+          nullable: true
         currentscheduledepisode:
           $ref: '#/components/schemas/ChannelRightNowScheduledEpisode'
+          nullable: true
         nextscheduledepisode:
           $ref: '#/components/schemas/ChannelRightNowScheduledEpisode'
+          nullable: true
     ChannelsRightNowResponse:
       allOf:
         - $ref: '#/components/schemas/PaginationResponse'

@@ -20,7 +20,7 @@ namespace Pekspro.SrApi.Test
 
             var program = newsProgramsResponse.Programs.First();
 
-            Assert.NotEmpty(program.Channel.Name);
+            Assert.NotEmpty(program.Channel!.Name);
             Assert.NotEmpty(program.Programimage);
             Assert.NotEmpty(program.Programimagetemplate);
             Assert.NotEmpty(program.Programimagetemplatewide);

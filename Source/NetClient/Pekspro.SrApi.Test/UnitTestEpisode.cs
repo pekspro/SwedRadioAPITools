@@ -26,13 +26,13 @@ namespace Pekspro.SrApi.Test
 
             var episode = episodesResponse.Episodes.First();
 
-            Assert.NotEmpty(episode.Program.Name);
+            Assert.NotEmpty(episode.Program!.Name);
             
             Assert.NotEmpty(episode.Audiopreference);
             Assert.NotEmpty(episode.Audiopresentation);
             Assert.NotEmpty(episode.Audiopriority);
             Assert.NotNull(episode.Broadcast);
-            Assert.NotEmpty(episode.Broadcast.Broadcastfiles);
+            Assert.NotEmpty(episode.Broadcast!.Broadcastfiles);
             Assert.NotNull(episode.Broadcasttime);
             Assert.NotEmpty(episode.Description);
             Assert.NotEmpty(episode.Imageurl);
@@ -102,7 +102,7 @@ namespace Pekspro.SrApi.Test
             // Assert
             var episode = episodesResponse.Episodes.First();
 
-            Assert.EndsWith(expectedExtension, episode.Broadcast.Broadcastfiles.First().Url);
+            Assert.EndsWith(expectedExtension, episode.Broadcast!.Broadcastfiles.First().Url);
         }
 
         private const int TestEpisodeId = 1749909;
@@ -139,7 +139,7 @@ namespace Pekspro.SrApi.Test
 
             var episode = episodesResponse.Episodes.First();
 
-            Assert.NotEmpty(episode.Program.Name);
+            Assert.NotEmpty(episode.Program!.Name);
 
             Assert.NotEmpty(episode.Audiopreference);
             Assert.NotEmpty(episode.Audiopresentation);

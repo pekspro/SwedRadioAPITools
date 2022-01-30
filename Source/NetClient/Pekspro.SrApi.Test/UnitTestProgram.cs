@@ -23,7 +23,7 @@ namespace Pekspro.SrApi.Test
 
             var program = programsResponse.Programs.First();
 
-            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Channel.Name));
+            Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Channel!.Name));
             Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Broadcastinfo));
             Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Description));
             Assert.Contains(programsResponse.Programs, a => !string.IsNullOrWhiteSpace(a.Email));
@@ -68,7 +68,7 @@ namespace Pekspro.SrApi.Test
 
             // Assert
             Assert.True(programsResponse.Programs.Any());
-            Assert.DoesNotContain(programsResponse.Programs, a => a.Programcategory.Id != 133);
+            Assert.DoesNotContain(programsResponse.Programs, a => a.Programcategory!.Id != 133);
         }
 
         [Theory]

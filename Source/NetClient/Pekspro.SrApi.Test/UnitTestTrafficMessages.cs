@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -58,6 +57,5 @@ namespace Pekspro.SrApi.Test
             Assert.NotEmpty(trafficMessagesLocalResponse.Messages);
             Assert.NotEqual(trafficMessagesAllResponse.Messages.Sum(a => a.Id), trafficMessagesLocalResponse.Messages.Sum(a => a.Id));
         }
-
     }
 }

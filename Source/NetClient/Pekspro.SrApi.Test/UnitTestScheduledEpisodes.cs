@@ -27,8 +27,8 @@ namespace Pekspro.SrApi.Test
 
             var schedule = scheduleResponse.Schedule.First();
 
-            Assert.NotEmpty(schedule.Channel.Name);
-            Assert.NotEmpty(schedule.Program.Name);
+            Assert.NotEmpty(schedule.Channel!.Name);
+            Assert.NotEmpty(schedule.Program!.Name);
             Assert.NotEmpty(schedule.Imageurl);
             Assert.NotEmpty(schedule.Imageurltemplate);
             Assert.NotEmpty(schedule.Title);
@@ -107,8 +107,8 @@ namespace Pekspro.SrApi.Test
 
             var schedule = scheduleResponse.Schedule.First();
 
-            Assert.NotEmpty(schedule.Channel.Name);
-            Assert.NotEmpty(schedule.Program.Name);
+            Assert.NotEmpty(schedule.Channel!.Name);
+            Assert.NotEmpty(schedule.Program!.Name);
             Assert.NotEmpty(schedule.Imageurl);
             Assert.NotEmpty(schedule.Imageurltemplate);
             Assert.NotEmpty(schedule.Title);
@@ -199,15 +199,15 @@ namespace Pekspro.SrApi.Test
             Assert.NotNull(scheduleResponse.Channel.Currentscheduledepisode);
             Assert.NotNull(scheduleResponse.Channel.Nextscheduledepisode);
 
-            Assert.NotEmpty(scheduleResponse.Channel.Previousscheduledepisode.Description);
+            Assert.NotEmpty(scheduleResponse.Channel.Previousscheduledepisode!.Description);
             Assert.NotEmpty(scheduleResponse.Channel.Previousscheduledepisode.Title);
             Assert.NotEmpty(scheduleResponse.Channel.Previousscheduledepisode.Program.Name);
 
-            Assert.NotEmpty(scheduleResponse.Channel.Currentscheduledepisode.Description);
+            Assert.NotEmpty(scheduleResponse.Channel.Currentscheduledepisode!.Description);
             Assert.NotEmpty(scheduleResponse.Channel.Currentscheduledepisode.Title);
             Assert.NotEmpty(scheduleResponse.Channel.Currentscheduledepisode.Program.Name);
 
-            Assert.NotEmpty(scheduleResponse.Channel.Nextscheduledepisode.Description);
+            Assert.NotEmpty(scheduleResponse.Channel.Nextscheduledepisode!.Description);
             Assert.NotEmpty(scheduleResponse.Channel.Nextscheduledepisode.Title);
             Assert.NotEmpty(scheduleResponse.Channel.Nextscheduledepisode.Program.Name);
         }
