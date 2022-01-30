@@ -35,10 +35,10 @@ namespace Pekspro.SrApi.Test
             Assert.NotEmpty(episode.Broadcast.Broadcastfiles);
             Assert.NotNull(episode.Broadcasttime);
             Assert.NotEmpty(episode.Description);
-            Assert.NotNull(episode.Downloadpodfile);
             Assert.NotEmpty(episode.Imageurl);
             Assert.NotEmpty(episode.Imageurltemplate);
-            Assert.NotNull(episode.Listenpodfile);
+            //Assert.NotNull(episode.Downloadpodfile);
+            //Assert.NotNull(episode.Listenpodfile);
             Assert.NotEmpty(episode.Title);
         }
 
