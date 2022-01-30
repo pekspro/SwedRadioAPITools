@@ -22,4 +22,4 @@ jobs:
     - name: Build
       run: dotnet build ./Source/NetClient --no-restore
     - name: Test
-      run: dotnet test ./Source/NetClient --no-build --verbosity normal
+      run: dotnet test ./Source/NetClient --filter "Type!=Stress" --no-build --verbosity normal
