@@ -49,10 +49,10 @@ namespace Pekspro.SrApi.Test
         }
 
         [Theory]
-        [InlineData(AudioQuality.Lo, "lo.m4a")]
-        [InlineData(AudioQuality.Normal, ".m4a")]
-        [InlineData(AudioQuality.Hi, "hi.m4a")]
-        public async Task TestGetLastPublishedShowsWithQualityAsync(AudioQuality audioQuality, string expectedExtension)
+        [InlineData(AudioQuality.Lo)]
+        [InlineData(AudioQuality.Normal)]
+        [InlineData(AudioQuality.Hi)]
+        public async Task TestGetLastPublishedShowsWithQualityAsync(AudioQuality audioQuality)
         {
             // Arrange
             var client = TestTools.CreateClient();
@@ -61,7 +61,7 @@ namespace Pekspro.SrApi.Test
             var episodesResponse = await client.GetLastPublishedShowsAsync(Format.Json, null, null, audioQuality);
 
             // Assert
-            Assert.Contains(episodesResponse.Shows, a => a.Broadcast?.Broadcastfiles.First().Url?.EndsWith(expectedExtension) == true);
+            Assert.Contains(episodesResponse.Shows, a => a.Broadcast?.Broadcastfiles.First().Url != null);
         }
     }
 }

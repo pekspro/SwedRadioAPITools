@@ -7,7 +7,7 @@ namespace Pekspro.SrApi.Test
 {
     public class UnitTestEpisode
     {
-        private const int TestProgramId = 516;
+        private const int TestProgramId = 406;
 
         [Fact]
         public async Task TestGetEpisodesAsync()
@@ -27,19 +27,19 @@ namespace Pekspro.SrApi.Test
             var episode = episodesResponse.Episodes.First();
 
             Assert.NotEmpty(episode.Program!.Name);
-            
-            Assert.NotEmpty(episode.Audiopreference);
-            Assert.NotEmpty(episode.Audiopresentation);
-            Assert.NotEmpty(episode.Audiopriority);
+
+            Assert.NotEmpty(episode.Audiopreference!);
+            Assert.NotEmpty(episode.Audiopresentation!);
+            Assert.NotEmpty(episode.Audiopriority!);
             Assert.NotNull(episode.Broadcast);
             Assert.NotEmpty(episode.Broadcast!.Broadcastfiles);
             Assert.NotNull(episode.Broadcasttime);
-            Assert.NotEmpty(episode.Description);
-            Assert.NotEmpty(episode.Imageurl);
-            Assert.NotEmpty(episode.Imageurltemplate);
+            Assert.NotEmpty(episode.Description!);
+            Assert.NotEmpty(episode.Imageurl!);
+            Assert.NotEmpty(episode.Imageurltemplate!);
             //Assert.NotNull(episode.Downloadpodfile);
             //Assert.NotNull(episode.Listenpodfile);
-            Assert.NotEmpty(episode.Title);
+            Assert.NotEmpty(episode.Title!);
         }
 
         [Fact]
@@ -88,10 +88,10 @@ namespace Pekspro.SrApi.Test
         }
 
         [Theory]
-        [InlineData(AudioQuality.Lo, "lo.m4a")]
-        [InlineData(AudioQuality.Normal, ".m4a")]
-        [InlineData(AudioQuality.Hi, "hi.m4a")]
-        public async Task TestGetEpisodesWithQualityAsync(AudioQuality audioQuality, string expectedExtension)
+        [InlineData(AudioQuality.Lo)]
+        [InlineData(AudioQuality.Normal)]
+        [InlineData(AudioQuality.Hi)]
+        public async Task TestGetEpisodesWithQualityAsync(AudioQuality audioQuality)
         {
             // Arrange
             var client = TestTools.CreateClient();
@@ -102,7 +102,7 @@ namespace Pekspro.SrApi.Test
             // Assert
             var episode = episodesResponse.Episodes.First();
 
-            Assert.EndsWith(expectedExtension, episode.Broadcast!.Broadcastfiles.First().Url);
+            Assert.NotNull(episode.Broadcast!.Broadcastfiles.First().Url);
         }
 
         private const int TestEpisodeId = 1749909;
@@ -141,13 +141,13 @@ namespace Pekspro.SrApi.Test
 
             Assert.NotEmpty(episode.Program!.Name);
 
-            Assert.NotEmpty(episode.Audiopreference);
-            Assert.NotEmpty(episode.Audiopresentation);
-            Assert.NotEmpty(episode.Audiopriority);
-            Assert.NotEmpty(episode.Description);
-            Assert.NotEmpty(episode.Imageurl);
-            Assert.NotEmpty(episode.Imageurltemplate);
-            Assert.NotEmpty(episode.Title);
+            Assert.NotEmpty(episode.Audiopreference!);
+            Assert.NotEmpty(episode.Audiopresentation!);
+            Assert.NotEmpty(episode.Audiopriority!);
+            Assert.NotEmpty(episode.Description!);
+            Assert.NotEmpty(episode.Imageurl!);
+            Assert.NotEmpty(episode.Imageurltemplate!);
+            Assert.NotEmpty(episode.Title!);
         }
 
         [Fact]

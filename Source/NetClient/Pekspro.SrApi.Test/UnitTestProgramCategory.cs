@@ -23,7 +23,7 @@ namespace Pekspro.SrApi.Test
 
             var programCategory = programsCategoriesResponse.Programcategories.First();
 
-            Assert.NotEmpty(programCategory.Name);
+            Assert.NotEmpty(programCategory.Name!);
         }
 
         [Fact]

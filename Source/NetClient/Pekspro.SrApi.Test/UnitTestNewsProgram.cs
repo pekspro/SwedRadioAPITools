@@ -21,15 +21,15 @@ namespace Pekspro.SrApi.Test
             var program = newsProgramsResponse.Programs.First();
 
             Assert.NotEmpty(program.Channel!.Name);
-            Assert.NotEmpty(program.Programimage);
-            Assert.NotEmpty(program.Programimagetemplate);
-            Assert.NotEmpty(program.Programimagetemplatewide);
-            Assert.NotEmpty(program.Programimagewide);
-            Assert.NotEmpty(program.Programslug);
-            Assert.NotEmpty(program.Programurl);
-            Assert.NotEmpty(program.Responsibleeditor);
-            Assert.NotEmpty(program.Socialimage);
-            Assert.NotEmpty(program.Socialimagetemplate);
+            Assert.NotEmpty(program.Programimage!);
+            Assert.NotEmpty(program.Programimagetemplate!);
+            Assert.NotEmpty(program.Programimagetemplatewide!);
+            Assert.NotEmpty(program.Programimagewide!);
+            Assert.NotEmpty(program.Programslug!);
+            Assert.NotEmpty(program.Programurl!);
+            Assert.NotEmpty(program.Responsibleeditor!);
+            Assert.NotEmpty(program.Socialimage!);
+            Assert.NotEmpty(program.Socialimagetemplate!);
             Assert.Contains(newsProgramsResponse.Programs, a => a.Socialmediaplatforms.Any());
         }
     }

@@ -87,7 +87,7 @@ namespace Pekspro.SrApi.Test
             Assert.DoesNotContain(programsResponse.Programs, a => a.Archived == !isArhived);
         }
 
-        private const int TestProgramId = 35;
+        private const int TestProgramId = 516;
 
         [Fact]
         public async Task TestGetProgramAsync()

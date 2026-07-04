@@ -23,16 +23,16 @@ namespace Pekspro.SrApi.Test
 
             var channel = channelsResponse.Channels.First();
 
-            Assert.NotEmpty(channel.Channeltype);
-            Assert.NotEmpty(channel.Color);
-            Assert.NotEmpty(channel.Image);
-            Assert.NotEmpty(channel.Imagetemplate);
-            Assert.NotEmpty(channel.Liveaudio!.Url);
-            Assert.NotEmpty(channel.Name);
-            Assert.NotEmpty(channel.Scheduleurl);
-            Assert.NotEmpty(channel.Siteurl);
-            Assert.NotEmpty(channel.Tagline);
-            Assert.NotEmpty(channel.Xmltvid);
+            Assert.NotEmpty(channel.Channeltype!);
+            Assert.NotEmpty(channel.Color!);
+            Assert.NotEmpty(channel.Image!);
+            Assert.NotEmpty(channel.Imagetemplate!);
+            Assert.NotEmpty(channel.Liveaudio!.Url!);
+            Assert.NotEmpty(channel.Name!);
+            Assert.NotEmpty(channel.Scheduleurl!);
+            Assert.NotEmpty(channel.Siteurl!);
+            Assert.NotEmpty(channel.Tagline!);
+            Assert.NotEmpty(channel.Xmltvid!);
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace Pekspro.SrApi.Test
         }
 
         [Theory]
-        [InlineData(ChannelSort.Id)]
+        [InlineData(ChannelSort.Id_asc)]
         [InlineData(ChannelSort.Id_desc)]
         [InlineData(ChannelSort.Name)]
         [InlineData(ChannelSort.Name_desc)]
@@ -70,7 +70,7 @@ namespace Pekspro.SrApi.Test
             var first = channelsResponse.Channels.First();
             var second = channelsResponse.Channels.Skip(1).First();
 
-            if(channelSort == ChannelSort.Id)
+            if(channelSort == ChannelSort.Id_asc)
             {
                 Assert.True(first.Id < second.Id);
             }
@@ -80,11 +80,11 @@ namespace Pekspro.SrApi.Test
             }
             else if (channelSort == ChannelSort.Name)
             {
-                Assert.True(first.Name.CompareTo(second.Name) < 0);
+                Assert.True(first.Name!.CompareTo(second.Name) < 0);
             }
             else if (channelSort == ChannelSort.Name_desc)
             {
-                Assert.True(first.Name.CompareTo(second.Name) > 0);
+                Assert.True(first.Name!.CompareTo(second.Name) > 0);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Pekspro.SrApi.Test
             // Assert
             var channel = channelsResponse.Channels.First();
 
-            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url);
+            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url!);
         }
 
         [Theory]
@@ -121,7 +121,7 @@ namespace Pekspro.SrApi.Test
             // Assert
             var channel = channelsResponse.Channels.First();
 
-            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url);
+            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url!);
         }
 
         private const int TestChannelId = 132;
@@ -156,7 +156,7 @@ namespace Pekspro.SrApi.Test
             // Assert
             var channel = channelResponse.Channel;
 
-            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url);
+            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url!);
         }
 
         [Theory]
@@ -174,7 +174,7 @@ namespace Pekspro.SrApi.Test
             // Assert
             var channel = channelsResponse.Channel;
 
-            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url);
+            Assert.EndsWith(expectedExtension, channel.Liveaudio!.Url!);
         }
 
     }

@@ -7,7 +7,7 @@ namespace Pekspro.SrApi.Test
 {
     public class UnitTestScheduledEpisodes
     {
-        private const int TestChannelId = 164;
+        private const int TestChannelId = 132;
         private const int TestProgramId = 516;
 
         [Fact]
@@ -29,9 +29,9 @@ namespace Pekspro.SrApi.Test
 
             Assert.NotEmpty(schedule.Channel!.Name);
             Assert.NotEmpty(schedule.Program!.Name);
-            Assert.NotEmpty(schedule.Imageurl);
-            Assert.NotEmpty(schedule.Imageurltemplate);
-            Assert.NotEmpty(schedule.Title);
+            Assert.NotEmpty(schedule.Imageurl!);
+            Assert.NotEmpty(schedule.Imageurltemplate!);
+            Assert.NotEmpty(schedule.Title!);
         }
 
         [Fact]
@@ -109,10 +109,10 @@ namespace Pekspro.SrApi.Test
 
             Assert.NotEmpty(schedule.Channel!.Name);
             Assert.NotEmpty(schedule.Program!.Name);
-            Assert.NotEmpty(schedule.Imageurl);
-            Assert.NotEmpty(schedule.Imageurltemplate);
-            Assert.NotEmpty(schedule.Title);
-            
+            Assert.NotEmpty(schedule.Imageurl!);
+            Assert.NotEmpty(schedule.Imageurltemplate!);
+            Assert.NotEmpty(schedule.Title!);
+
         }
 
         [Fact]
@@ -194,22 +194,22 @@ namespace Pekspro.SrApi.Test
             // Assert
             Assert.NotNull(scheduleResponse.Copyright);
             Assert.NotNull(scheduleResponse.Channel);
-            Assert.NotEmpty(scheduleResponse.Channel.Name);
+            Assert.NotEmpty(scheduleResponse.Channel.Name!);
             Assert.NotNull(scheduleResponse.Channel.Previousscheduledepisode);
             Assert.NotNull(scheduleResponse.Channel.Currentscheduledepisode);
             Assert.NotNull(scheduleResponse.Channel.Nextscheduledepisode);
 
-            Assert.NotEmpty(scheduleResponse.Channel.Previousscheduledepisode!.Description);
-            Assert.NotEmpty(scheduleResponse.Channel.Previousscheduledepisode.Title);
-            Assert.NotEmpty(scheduleResponse.Channel.Previousscheduledepisode.Program.Name);
+            Assert.NotEmpty(scheduleResponse.Channel.Previousscheduledepisode!.Description!);
+            Assert.NotEmpty(scheduleResponse.Channel.Previousscheduledepisode.Title!);
+            Assert.NotEmpty(scheduleResponse.Channel.Previousscheduledepisode.Program.Name!);
 
-            Assert.NotEmpty(scheduleResponse.Channel.Currentscheduledepisode!.Description);
-            Assert.NotEmpty(scheduleResponse.Channel.Currentscheduledepisode.Title);
-            Assert.NotEmpty(scheduleResponse.Channel.Currentscheduledepisode.Program.Name);
+            Assert.NotEmpty(scheduleResponse.Channel.Currentscheduledepisode!.Description!);
+            Assert.NotEmpty(scheduleResponse.Channel.Currentscheduledepisode.Title!);
+            Assert.NotEmpty(scheduleResponse.Channel.Currentscheduledepisode.Program.Name!);
 
-            Assert.NotEmpty(scheduleResponse.Channel.Nextscheduledepisode!.Description);
-            Assert.NotEmpty(scheduleResponse.Channel.Nextscheduledepisode.Title);
-            Assert.NotEmpty(scheduleResponse.Channel.Nextscheduledepisode.Program.Name);
+            Assert.NotEmpty(scheduleResponse.Channel.Nextscheduledepisode!.Description!);
+            Assert.NotEmpty(scheduleResponse.Channel.Nextscheduledepisode.Title!);
+            Assert.NotEmpty(scheduleResponse.Channel.Nextscheduledepisode.Program.Name!);
         }
     }
 }
